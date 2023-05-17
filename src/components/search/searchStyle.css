@@ -1,0 +1,31 @@
+
+
+
+.nav__search{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 30%;
+    height: 3rem;
+    border: none;
+}
+.nav__search input{
+    display: flex;
+    padding: 0 0.5rem;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 80%;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    border: none;
+
+}
+.nav__search span{
+    position: absolute;
+    top: 30%;
+    right: 5%;
+    font-size: 1.3rem;
+    color: #908a8a;
+}

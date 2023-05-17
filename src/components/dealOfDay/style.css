@@ -1,0 +1,101 @@
+
+
+.deal__Container{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: auto;
+}
+.deal__Container h1{
+    display: flex;
+    margin-left: 1rem;
+    padding: 1rem;
+}
+.dael__main{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+
+
+}
+
+.deal__card{
+    display: flex;
+position: relative;
+    flex-direction: column;
+    width: 19rem;
+    height: 25rem;
+    margin:1rem;
+    border-radius: 1rem;
+    box-shadow: 2px 2px 10px #999;
+    transition: 0.3s linear ;
+
+}
+.deal__card:hover{
+    box-shadow: 5px 5px 20px #999,
+    6px 7px 20px #999,
+    6px 7px 20px #999,
+    5px 5px 20px #999;
+  
+}
+.deal__card .deal__img{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 70%;
+
+}
+.deal__card .deal__img img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 80%;
+}
+.deal__card .deal__img p{
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    width: 4rem;
+    top: 1rem;
+    left: 0;
+    color: #fff;
+    padding: 0.5rem;
+    border-radius: 0 3px 3px 0;
+    background: #42d53a;
+
+}
+.deal__des{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+.deal__des p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    width: 100%;
+}
+.deal__des p .after__disc{
+    margin-left: 0.4rem;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    font-size: 1.2rem;
+}
+.deal__des p .original__price{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8rem;
+    margin-left: 0.5rem;
+    text-decoration: line-through;
+    color: red;
+}
