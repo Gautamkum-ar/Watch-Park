@@ -17,12 +17,12 @@ const CategoryList = () => {
               <div className="cat__img">
                 <img className="img" src={image} alt={categoryName} />
               </div>
-              <p className="cat__detail">
+              <section className="cat__detail">
                 {" "}
                 <h4 className="cat__title">{categoryName.toUpperCase()}</h4>
                 <p className="cat__des">{description}</p>
                 <button className="cat__btn">Explore</button>
-              </p>
+              </section>
             </div>
           );
         })}

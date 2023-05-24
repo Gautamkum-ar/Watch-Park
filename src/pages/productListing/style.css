@@ -1,7 +1,81 @@
 
 
 .product__listing{
-    display: flex;
+    display: grid;
+    grid-template-columns: 19rem auto  ;
+
     width: 100%;
     margin-top: 4.5rem;
+
+}
+.product__listing h1{
+    background: #fff;
+
+}
+.show__list{
+    display: flex;
+    flex-wrap: wrap;
+}
+/* Filters -------> */
+
+
+.filter__box{
+    display: flex;
+    flex-direction: column;
+align-items: center;
+    position: sticky;
+    left: 0;
+    top: 5rem;
+    height: 100vh;
+    padding: 2rem;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    
+    scroll-behavior: smooth;
+    
+}
+.filter__box h2{
+    display: flex;
+    width: 100%;
+    color: #444;
+}
+.filter__by__price{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    margin-top: 1rem;
+}
+.filter__box p{
+    display: flex;
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+.filter__by__price label{
+    display: flex;
+    width: 100%;
+    color: #555;
+
+    justify-content: space-between;
+}
+.filter__by_Category,.ideal__for{
+    display: flex;
+    margin-top: 1rem;
+    flex-direction: column;
+    width: 100%;
+}
+.filter__by_Category label,.ideal__for label{
+    display: flex;
+    width: 100%;
+    color: #555;
+
+    justify-content: space-between;
+}
+.range{
+    display: flex;
+    flex-direction: column;
+    color: #333;
+    font-size: 1.2rem;
+    margin-top: 1rem;
 }

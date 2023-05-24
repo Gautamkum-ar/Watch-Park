@@ -10,11 +10,13 @@ import { NavLink } from "react-router-dom";
 
 import "../navBar/navStyle.css";
 import { Search } from "../search/Search";
+import { useCart } from "../../contexts/CartContext/CartContext";
 
 const Header = () => {
+  const { state } = useCart();
   const getStyle = ({ isActive }) => ({
     color: isActive ? "purple" : "#fdf4f4",
-    fontSize: isActive && "1.2rem",
+    // fontSize: isActive && "1.2rem",
     borderBottom: isActive && "2px solid purple",
   });
   return (
@@ -27,33 +29,39 @@ const Header = () => {
         </NavLink>
       </span>
       <Search />
-      <ul className="nav__links">
+      <section className="nav__links">
         {/* <li>
           <FaSearch />
           <NavLink style={getStyle} to="/pro"></NavLink>
         </li> */}
-        <li>
-          <NavLink style={getStyle} to="/products">
-            <FaShoppingBag />
-          </NavLink>
-        </li>
 
-        <li>
-          <NavLink style={getStyle} to="/cart">
-            <FaShoppingCart />
-          </NavLink>
-        </li>
-        <li>
-          <NavLink style={getStyle} to="/wishlist">
-            <FaHeart />
-          </NavLink>
-        </li>
-        <li>
-          <NavLink style={getStyle} to="/user">
-            <FaUser />
-          </NavLink>
-        </li>
-      </ul>
+        <NavLink style={getStyle} to="/products">
+          <FaShoppingBag />
+        </NavLink>
+
+        <NavLink style={getStyle} to="/cart">
+          <FaShoppingCart />
+          <p className="list__item">
+            {" "}
+            {state.cart.length > 0 && (
+              <span className="cart__no">{state.cart.length}</span>
+            )}
+          </p>
+        </NavLink>
+
+        <NavLink style={getStyle} to="/wishlist">
+          <FaHeart />
+          <p className="list__item">
+            {" "}
+            {state.cart.length > 0 && (
+              <span className="cart__no">{state.cart.length}</span>
+            )}
+          </p>
+        </NavLink>
+        <NavLink style={getStyle} to="/profile">
+          <FaUser />
+        </NavLink>
+      </section>
     </header>
   );
 };

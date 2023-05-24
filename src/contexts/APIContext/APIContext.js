@@ -9,9 +9,8 @@ export const APIConetextProvider = ({ children }) => {
 
   const getCategory = async () => {
     try {
-      const response = await fetch("/api/categories");
-      const products = await response.json();
-      setCategories(products?.categories);
+      const response = axios.get("/api/categories");
+      response.then((data) => setCategories(data.data?.categories));
     } catch (e) {
       console.error(e);
     }
@@ -19,9 +18,10 @@ export const APIConetextProvider = ({ children }) => {
 
   const getProducts = async () => {
     try {
-      const response = await fetch("/api/products");
-      const data = await response.json();
-      setProducts(data?.products);
+      const response = axios.get("/api/products");
+      response.then((data) => {
+        setProducts(data.data?.products);
+      });
     } catch (e) {
       console.error(e);
     }

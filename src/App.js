@@ -8,6 +8,10 @@ import Header from "./components/navBar/NavBar";
 import ProductListing from "./pages/productListing/ProductListing";
 import Cart from "./pages/cart/Cart";
 import WishList from "./pages/wishList/WishList";
+import { Login } from "./pages/login/Login";
+import { SignUp } from "./pages/signup/SignUp";
+import { RequireAuth } from "./RequireAuth/RequireAuth";
+import { User } from "./pages/userProfile/User";
 
 function App() {
   return (
@@ -17,8 +21,25 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/mock" element={<MockMan />} />
         <Route path="/products" element={<ProductListing />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/wishlist" element={<WishList />} />
+        <Route
+          path="/cart"
+          element={
+            <RequireAuth>
+              <Cart />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/wishlist"
+          element={
+            <RequireAuth>
+              <WishList />
+            </RequireAuth>
+          }
+        />
+        <Route path="/profile" element={<User />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
     </div>
   );
