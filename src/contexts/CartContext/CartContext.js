@@ -31,12 +31,11 @@ export const CartContextProvider = ({ children }) => {
     }
   };
 
-  // useEffect(() => {
-  //   getCart();
-  // }, []);
+  useEffect(() => {
+    getCart();
+  }, []);
 
   const handleAddToCart = async (prod) => {
-    getCart();
 
     try {
       const encodedToken = localStorage.getItem("token");
@@ -100,7 +99,11 @@ export const CartContextProvider = ({ children }) => {
       deleteItem(_id);
     }
   };
-  console.log(state.cart);
+  const isPresentIncart = (_id) => {
+    const findItem = state?.cart?.find((item) => item._id === _id);
+    return findItem ? true : false;
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -110,6 +113,7 @@ export const CartContextProvider = ({ children }) => {
         increaseItem,
         decreaseItem,
         deleteItem,
+        isPresentIncart
       }}
     >
       {children}

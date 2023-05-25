@@ -89,8 +89,8 @@
 .delete__btn{
     display: flex;
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 5px;
+    right: 5px;
     width: 2rem;
     height: 2rem;
     justify-content: center;
@@ -101,6 +101,31 @@
     background: none;
     cursor: pointer;
     color: rgba(194, 9, 9, 0.972);
+
+   
+}
+.add__to__wishList{
+    display: flex;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 2rem;
+    height: 2rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: none;
+    font-size: 1.4rem;
+    background: none;
+    cursor: pointer;
+}
+.rmv{
+    
+    color:#d43fcf;
+}
+.ad{
+    color:#b0b4b9;
+
 }
 .img__container{
     display: flex;

@@ -1,23 +1,25 @@
 import { Card } from "../../components/card/Card";
 import { useCart } from "../../contexts/CartContext/CartContext";
-import { FaMinus, FaPlus, FaStar, FaTrash } from "react-icons/fa";
+import { FaHeart, FaMinus, FaPlus, FaStar, FaTrash } from "react-icons/fa";
 import "../cart/style.css";
 import { Billing } from "./Billing";
 
 import emptyCart from "../../assets/images/emptyCart.gif";
+import { useWishList } from "../../contexts/wishListContext/wishListContext";
 
 const Cart = () => {
   const { cartData, increaseItem, state, decreaseItem, deleteItem } = useCart();
+  const { addItemInWishList, isPresentInWish, removeFromWish } = useWishList();
 
   return (
     <>
       <div className="cart__container">
-        {state.cart.length > 0 ? (
+        {state?.cart?.length > 0 ? (
           <h1 className="total__item">Shopping Cart:({cartData.length})</h1>
         ) : (
           <p className="no_item">You see there is No item in cart</p>
         )}
-        {state.cart.length < 1 ? (
+        {state?.cart?.length < 1 ? (
           <div className="empty">
             <img src={emptyCart} alt="emptycart" className="empty__cart" />
           </div>
@@ -26,7 +28,7 @@ const Cart = () => {
             {" "}
             <div className="cart__main">
               <div className="cart__product">
-                {state.cart?.map((product) => {
+                {state?.cart?.map((product) => {
                   const {
                     image,
                     name,
@@ -45,6 +47,26 @@ const Cart = () => {
                         onClick={() => deleteItem(_id)}
                       >
                         <FaTrash />
+                      </button>
+                      <button
+                        className="add__to__wishList"
+                        onClick={() =>
+                          isPresentInWish(_id)
+                            ? removeFromWish(_id)
+                            : addItemInWishList(product)
+                        }
+                      >
+                        {isPresentInWish(_id) ? (
+                          <p className="rmv">
+                            {" "}
+                            <FaHeart />
+                          </p>
+                        ) : (
+                          <p className="ad">
+                            {" "}
+                            <FaHeart />
+                          </p>
+                        )}
                       </button>
 
                       <section className="img__container">

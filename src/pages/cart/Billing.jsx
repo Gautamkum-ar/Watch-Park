@@ -1,18 +1,18 @@
 import "../cart/style.css";
 
 export const Billing = ({ cart }) => {
-  const totalPrice = cart.reduce(
+  const totalPrice = cart?.reduce(
     (total, { price, discountPercentage, qty }) =>
       total + parseInt(price - (price * discountPercentage) / 100) * qty,
     0
   );
-  const totalDiscount = cart.reduce(
+  const totalDiscount = cart?.reduce(
     (total, { discountPercentage, price, qty }) =>
       total + parseInt((price * discountPercentage * qty) / 100),
     0
   );
 
-  const subTotal = cart.reduce(
+  const subTotal = cart?.reduce(
     (total, { price, qty }) => total + price * qty,
     0
   );
@@ -21,7 +21,7 @@ export const Billing = ({ cart }) => {
       <section className="billing__header">
         {" "}
         <h2>Your Cart </h2>
-        <h2>{cart.length} items </h2>
+        <h2>{cart?.length} items </h2>
       </section>
       <section className="billing__sub">
         <div className="subt">

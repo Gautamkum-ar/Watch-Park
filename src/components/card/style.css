@@ -19,6 +19,7 @@
     border-radius: 0.6rem;
     transition: .2s linear;
     box-shadow: 2px 3px 10px #888;
+    
 }
 .card:hover{
     box-shadow: 5px 6px 10px #888,
@@ -32,8 +33,11 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 0.2rem;
+    right: 0.2rem;
+    font-size: 1.4rem;
+    color:#b0b4b9;
+    cursor: pointer;
 }
 .card .card__image{
     display: flex;
@@ -49,8 +53,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 80%;
-    height: 90%;
+    width: 78%;
+    height: 88%;
 }
 .card__details{
     display: flex;
@@ -97,11 +101,12 @@
     align-items: center;
     font-size: 1rem;
     position: absolute;
-    width: 4.5rem;
+    /* width: 4.5rem; */
     height: 2rem;
     top: 0;
     left: 0;
-    background: #53c455;
+    padding: 0.3rem;
+    background: #51f659;
     color: #FFF;
     margin-top: 0.4rem;
 border-radius: 0 0.5rem 0.5rem 0;

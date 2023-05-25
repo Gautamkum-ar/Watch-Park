@@ -1,9 +1,15 @@
 import axios from "axios";
-import { createContext, useContext } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
+import { wishReducer } from "../../reducers/wishListReducer/w-L-reducer";
 
 const WishListContext = createContext(null);
 
+const initState = {
+  wishData: [],
+};
 export const WishListProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(wishReducer, initState);
+
   const getWishListData = async () => {
     try {
       const response = await axios.get("/api/user/wishlist", {
@@ -11,7 +17,7 @@ export const WishListProvider = ({ children }) => {
           authorization: localStorage.getItem("token"),
         },
       });
-      console.log(response.data.wishlist);
+      dispatch({ type: "GET_WISHLIST", payload: response.data.wishlist });
     } catch (e) {
       console.error(e);
     }
@@ -25,13 +31,47 @@ export const WishListProvider = ({ children }) => {
         body: JSON.stringify({ product }),
       });
       const { wishlist } = await response.json();
+      dispatch({ type: "ADD_TO_WISHLIST", payload: wishlist });
       console.log(wishlist);
     } catch (e) {
       console.error(e);
     }
   };
+
+  const removeFromWish = async (_id) => {
+    try {
+      const response = await fetch(`/api/user/wishlist/${_id}`, {
+        method: "DELETE",
+        headers: { authorization: localStorage.getItem("token") },
+      });
+      const { wishlist } = await response.json();
+      console.log(wishlist);
+      dispatch({ type: "REMOVE_FROM_WISH", payload: wishlist });
+    } catch (e) {
+      console.error(e);
+    }
+  };
+  const wishlistLength = state?.wishData?.length;
+
+  const isPresentInWish = (_id) => {
+    const findItem=state?.wishData?.find((item)=>item._id===_id)
+    return findItem ?true:false
+  };
+
+  useEffect(() => {
+    getWishListData();
+  }, []);
   return (
-    <WishListContext.Provider value={{ getWishListData, addItemInWishList }}>
+    <WishListContext.Provider
+      value={{
+        getWishListData,
+        addItemInWishList,
+        state,
+        wishlistLength,
+        removeFromWish,
+        isPresentInWish
+      }}
+    >
       {children}
     </WishListContext.Provider>
   );

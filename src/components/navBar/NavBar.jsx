@@ -11,9 +11,11 @@ import { NavLink } from "react-router-dom";
 import "../navBar/navStyle.css";
 import { Search } from "../search/Search";
 import { useCart } from "../../contexts/CartContext/CartContext";
+import { useWishList } from "../../contexts/wishListContext/wishListContext";
 
 const Header = () => {
   const { state } = useCart();
+  const { wishlistLength } = useWishList();
   const getStyle = ({ isActive }) => ({
     color: isActive ? "purple" : "#fdf4f4",
     // fontSize: isActive && "1.2rem",
@@ -30,11 +32,6 @@ const Header = () => {
       </span>
       <Search />
       <section className="nav__links">
-        {/* <li>
-          <FaSearch />
-          <NavLink style={getStyle} to="/pro"></NavLink>
-        </li> */}
-
         <NavLink style={getStyle} to="/products">
           <FaShoppingBag />
         </NavLink>
@@ -43,8 +40,8 @@ const Header = () => {
           <FaShoppingCart />
           <p className="list__item">
             {" "}
-            {state.cart.length > 0 && (
-              <span className="cart__no">{state.cart.length}</span>
+            {state?.cart?.length > 0 && (
+              <span className="cart__no">{state?.cart?.length}</span>
             )}
           </p>
         </NavLink>
@@ -53,8 +50,8 @@ const Header = () => {
           <FaHeart />
           <p className="list__item">
             {" "}
-            {state.cart.length > 0 && (
-              <span className="cart__no">{state.cart.length}</span>
+            {wishlistLength > 0 && (
+              <span className="cart__no">{wishlistLength}</span>
             )}
           </p>
         </NavLink>
