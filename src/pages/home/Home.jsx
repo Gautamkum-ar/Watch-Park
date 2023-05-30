@@ -4,12 +4,23 @@ import { ImageSlider } from "../../components/imageSlider/ImageSlider";
 import DealOfDay from "../../components/dealOfDay/DealOfDay";
 
 import "../home/homeStyle.css";
+import { Loader } from "../../components/loader/Loader";
+import { APIContext } from "../../contexts/APIContext/APIContext";
 export const Home = () => {
+  const { isLoading } = useContext(APIContext);
+  console.log(isLoading);
   return (
     <div className="home__page">
-      <ImageSlider />
-      <CategoryList />
-      <DealOfDay />
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+        
+          <ImageSlider />
+          <CategoryList />
+          <DealOfDay />
+        </>
+      )}
     </div>
   );
 };

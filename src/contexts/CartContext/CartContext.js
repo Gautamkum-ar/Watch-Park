@@ -1,4 +1,3 @@
-import axios from "axios";
 import {
   createContext,
   useContext,
@@ -7,25 +6,33 @@ import {
   useState,
 } from "react";
 import { cartReducer } from "../../reducers/cartReducer/cartreducer";
+import { toast } from "react-toastify";
 
 const CartContext = createContext();
 
 const initState = {
   cart: [],
+  singleProduct: {},
 };
 export const CartContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(cartReducer, initState);
   const [cartData, setCartData] = useState([]);
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const getCart = async () => {
+    setIsLoading(true);
     try {
-      const response = await axios.get("/api/user/cart", {
+      const response = await fetch("/api/user/cart", {
+        method: "GET",
         headers: {
           authorization: localStorage.getItem("token"),
         },
       });
-      setCartData(await response.data.cart);
-      dispatch({ type: "GET_CART", payload: await response.data.cart });
+      const { cart } = await response.json();
+      setCartData(cart);
+      dispatch({ type: "GET_CART", payload: cart });
+      setIsLoading(false);
     } catch (e) {
       console.error(e);
     }
@@ -36,7 +43,7 @@ export const CartContextProvider = ({ children }) => {
   }, []);
 
   const handleAddToCart = async (prod) => {
-
+    toast.success("item is Add to your cart");
     try {
       const encodedToken = localStorage.getItem("token");
       const response = await fetch("/api/user/cart", {
@@ -52,6 +59,8 @@ export const CartContextProvider = ({ children }) => {
   };
 
   const increaseItem = async (_id) => {
+    toast.success("Item Quantity increase By +1");
+
     try {
       const response = await fetch(`/api/user/cart/${_id}`, {
         method: "POST",
@@ -61,12 +70,14 @@ export const CartContextProvider = ({ children }) => {
         body: JSON.stringify({ action: { type: "increment" } }),
       });
       const { cart } = await response.json();
+      console.log(cart);
       dispatch({ type: "INCREMENT_CART_ITEM", payload: cart });
     } catch (e) {
       console.log(e);
     }
   };
   const deleteItem = async (_id) => {
+    toast.warning("Item deleted succesfully");
     try {
       const response = await fetch(`/api/user/cart/${_id}`, {
         method: "DELETE",
@@ -82,6 +93,7 @@ export const CartContextProvider = ({ children }) => {
   };
   const decreaseItem = async (_id, qty) => {
     if (qty > 1) {
+      toast.warning("Item quantity remove by -1");
       try {
         const response = await fetch(`/api/user/cart/${_id}`, {
           method: "POST",
@@ -99,10 +111,25 @@ export const CartContextProvider = ({ children }) => {
       deleteItem(_id);
     }
   };
+
+  const getSingleProduct = async (_id) => {
+    setIsLoading(true);
+    try {
+      const response = await fetch(`/api/products/${_id}`, {
+        headers: "GET",
+      });
+      const { product } = await response.json();
+      dispatch({ type: "GET_SINGLE_PRODUCT", payload: product });
+      setIsLoading(false);
+    } catch (e) {
+      console.error(e);
+    }
+  };
   const isPresentIncart = (_id) => {
     const findItem = state?.cart?.find((item) => item._id === _id);
     return findItem ? true : false;
   };
+  console.log(state.singleProduct);
 
   return (
     <CartContext.Provider
@@ -113,7 +140,9 @@ export const CartContextProvider = ({ children }) => {
         increaseItem,
         decreaseItem,
         deleteItem,
-        isPresentIncart
+        isPresentIncart,
+        getSingleProduct,
+        isLoading,
       }}
     >
       {children}

@@ -1,9 +1,13 @@
 import { useContext } from "react";
 import "../dealOfDay/style.css";
 import { APIContext } from "../../contexts/APIContext/APIContext";
+import { useNavigate } from "react-router-dom";
+import { useCart } from "../../contexts/CartContext/CartContext";
 
 const DealOfDay = () => {
   const { products } = useContext(APIContext);
+  const { getSingleProduct } = useCart();
+  const navigate = useNavigate();
   return (
     <>
       <div className="deal__Container">
@@ -12,10 +16,15 @@ const DealOfDay = () => {
           {products
             .filter((product) => product.discountPercentage >= 70)
             .map((prod) => {
-              const { id, discountPercentage, name, image, price } = prod;
+              const { _id, discountPercentage, name, image, price } = prod;
               return (
-                <div key={id} className="deal__card">
-                  <section className="deal__img">
+                <div key={_id} className="deal__card">
+                  <section
+                    onClick={() => {
+                      navigate(`/product/${_id}`, getSingleProduct(_id));
+                    }}
+                    className="deal__img"
+                  >
                     <p>{discountPercentage}%</p>
                     <img src={image} alt={name} />
                   </section>

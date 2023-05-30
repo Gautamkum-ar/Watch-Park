@@ -3,10 +3,11 @@ import "../signup/style.css";
 import { useAuth } from "../../contexts/AuthContext/AuthContext";
 
 export const SignUp = () => {
-  const { setSignUp, signup, signupHandler } = useAuth();
+  const { setSignUp, signup, signupHandler, setIsGuest, loginHandler } =
+    useAuth();
   return (
     <div className="signup__container">
-      <form action="" onSubmit={(e) => e.preventDefault()}>
+      <form onSubmit={(e) => e.preventDefault()}>
         <h2>SIGN UP</h2>
         <label>
           Enter Your firstname:{" "}
@@ -34,7 +35,13 @@ export const SignUp = () => {
           />
         </label>
         <label>
-          Enter new password: <input type="password" />
+          Enter new password:{" "}
+          <input
+            type="password"
+            onChange={(e) =>
+              setSignUp({ ...signup, crntPassword: e.target.value })
+            }
+          />
         </label>
         <label>
           Confirm password:{" "}
@@ -43,10 +50,17 @@ export const SignUp = () => {
             onChange={(e) => setSignUp({ ...signup, passwod: e.target.value })}
           />
         </label>
-        <button className="signup__btn" onClick={signupHandler}>
+        <button className="signup__btn" onClick={() => signupHandler()}>
           Sign Up
         </button>
-        <button className="guest__login">login in as guest</button>
+        <button
+          className="guest__login"
+          onClick={() => {
+            loginHandler();
+          }}
+        >
+          login in as guest
+        </button>
         <p className="login__link">
           Already have Account ? <Link to="/login">Login</Link>
         </p>

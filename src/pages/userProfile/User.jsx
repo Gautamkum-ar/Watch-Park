@@ -3,9 +3,10 @@ import { useAuth } from "../../contexts/AuthContext/AuthContext";
 import "../userProfile/style.css";
 import { useState } from "react";
 
+
+import "../userProfile/style.css";
 export const User = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
-  const { user } = useAuth();
+  const { user, isLoggedIn, setIsLoggedIn } = useAuth();
   const token = localStorage.getItem("token");
   const handleLogout = () => {
     setIsLoggedIn(false);
@@ -19,11 +20,14 @@ export const User = () => {
           <h1>
             {user.firstName} {user.lastName}
           </h1>
-          <h3></h3>
+
           <button onClick={handleLogout}>Logout</button>
         </div>
       ) : (
-        <Link to="/login">Login</Link>
+        <>
+          <h1 className="lg__hd">You are not logged in Please Login First</h1>
+          <Link to="/login">Login</Link>
+        </>
       )}
     </div>
   );

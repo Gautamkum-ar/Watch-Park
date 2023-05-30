@@ -1,6 +1,6 @@
-import axios from "axios";
 import { createContext, useContext, useEffect, useReducer } from "react";
 import { wishReducer } from "../../reducers/wishListReducer/w-L-reducer";
+import { toast } from "react-toastify";
 
 const WishListContext = createContext(null);
 
@@ -12,18 +12,21 @@ export const WishListProvider = ({ children }) => {
 
   const getWishListData = async () => {
     try {
-      const response = await axios.get("/api/user/wishlist", {
+      const response = await fetch("/api/user/wishlist", {
+        method: "GET",
         headers: {
           authorization: localStorage.getItem("token"),
         },
       });
-      dispatch({ type: "GET_WISHLIST", payload: response.data.wishlist });
+      const { wishlist } = await response.json();
+      dispatch({ type: "GET_WISHLIST", payload: wishlist });
     } catch (e) {
       console.error(e);
     }
   };
 
   const addItemInWishList = async (product) => {
+    toast.success("item is added to your wishList");
     try {
       const response = await fetch("/api/user/wishlist", {
         method: "POST",
@@ -39,6 +42,7 @@ export const WishListProvider = ({ children }) => {
   };
 
   const removeFromWish = async (_id) => {
+    toast.warning("Item remove from your wishList");
     try {
       const response = await fetch(`/api/user/wishlist/${_id}`, {
         method: "DELETE",
@@ -54,8 +58,8 @@ export const WishListProvider = ({ children }) => {
   const wishlistLength = state?.wishData?.length;
 
   const isPresentInWish = (_id) => {
-    const findItem=state?.wishData?.find((item)=>item._id===_id)
-    return findItem ?true:false
+    const findItem = state?.wishData?.find((item) => item._id === _id);
+    return findItem ? true : false;
   };
 
   useEffect(() => {
@@ -69,7 +73,7 @@ export const WishListProvider = ({ children }) => {
         state,
         wishlistLength,
         removeFromWish,
-        isPresentInWish
+        isPresentInWish,
       }}
     >
       {children}

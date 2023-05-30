@@ -46,6 +46,7 @@ position: relative;
     align-items: center;
     width: 90%;
     height: 70%;
+    cursor: pointer;
 
 }
 .deal__card .deal__img img{

@@ -8,7 +8,7 @@ import { v4 as uuid } from "uuid";
 export const categories = [
   {
     _id: uuid(),
-    categoryName: "Smart Watch",
+    categoryName: "SMART WATCH",
     description:
       "Vast selection of components, accessories, adapters, media drives & more from top brands. No Cost EMI Available. Best Deals. Huge Selection.",
     image:
@@ -16,7 +16,7 @@ export const categories = [
   },
   {
     _id: uuid(),
-    categoryName: "Digital",
+    categoryName: "DIGITAL",
     description:
       "Casual digital watches are designed for casual wear. They are inexpensive, comfortable to wear and come in traditional designs   ",
     image:

@@ -6,6 +6,9 @@ const ProductContext = createContext(null);
 export const initialState = {
   sortByPrice: "",
   handleCheckboxes: [],
+  idealFor: [],
+  priceByRange: "",
+  ratingFilter: "",
 };
 
 export const ProductContextProvider = ({ children }) => {
@@ -19,3 +22,5 @@ export const ProductContextProvider = ({ children }) => {
 };
 
 export const useProduct = () => useContext(ProductContext);
+
+        

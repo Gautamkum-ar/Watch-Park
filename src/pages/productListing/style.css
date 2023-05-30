@@ -2,15 +2,19 @@
 
 .product__listing{
     display: grid;
-    grid-template-columns: 19rem auto  ;
+    grid-template-columns: 17rem auto  ;
 
     width: 100%;
     margin-top: 4.5rem;
 
 }
-.product__listing h1{
-    background: #fff;
+.product__listing .totalProduct{
+    margin: 1rem;
+    color: #6d5e5e;
 
+}
+.totalProduct span{
+    color: #824e7a;
 }
 .show__list{
     display: flex;
@@ -26,7 +30,7 @@ align-items: center;
     position: sticky;
     left: 0;
     top: 5rem;
-    height: 100vh;
+    height: 70vh;
     padding: 2rem;
     overflow-y: scroll;
     scrollbar-width: thin;
@@ -34,22 +38,38 @@ align-items: center;
     scroll-behavior: smooth;
     
 }
+.filter__head{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
 .filter__box h2{
     display: flex;
     width: 100%;
     color: #444;
 }
+.clearfilter__btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:none;
+    color: red;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+
+}
 .filter__by__price{
     display: flex;
     flex-direction: column;
     width: 100%;
-
     margin-top: 1rem;
 }
 .filter__box p{
     display: flex;
     font-size: 1.1rem;
     color: #333;
+    width: 8rem;
     margin-bottom: 0.5rem;
 }
 .filter__by__price label{
@@ -59,13 +79,28 @@ align-items: center;
 
     justify-content: space-between;
 }
-.filter__by_Category,.ideal__for{
+.filter__by_Category{
     display: flex;
     margin-top: 1rem;
     flex-direction: column;
     width: 100%;
+
 }
-.filter__by_Category label,.ideal__for label{
+.ideal__for{
+    display: flex;
+    margin-top: 2rem;
+    width: 100%;
+    gap: 5px;
+
+}
+.ideal__for select{
+    display: flex;
+    width: 6rem;
+    height: 2rem;
+    border-radius: 5px;
+    padding: 0.5rem;
+}
+.filter__by_Category label{
     display: flex;
     width: 100%;
     color: #555;
@@ -75,7 +110,32 @@ align-items: center;
 .range{
     display: flex;
     flex-direction: column;
-    color: #333;
+    color: #282828;
     font-size: 1.2rem;
     margin-top: 1rem;
+
 }
+.selected__range{
+    display: flex;
+    margin: 1rem;
+    font-size: 0.9rem;
+}
+datalist{
+    display: flex;
+    gap: 30px;
+    font-size: 0.8rem;
+}
+.filter__by__rating{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 3rem;
+}
+.filter__by__rating label{
+    display: flex;
+    width: 100%;
+    color: #555;
+
+    justify-content: space-between;
+}
+

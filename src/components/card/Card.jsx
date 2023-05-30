@@ -1,15 +1,15 @@
-import { useContext } from "react";
 import "../card/style.css";
 import { useCart } from "../../contexts/CartContext/CartContext";
-import { Link } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 import { useWishList } from "../../contexts/wishListContext/wishListContext";
+import { useNavigate } from "react-router-dom";
 
 export const Card = ({ product }) => {
   const { price, name, _id, image, discountPercentage, inStock } = product;
   const { addItemInWishList, isPresentInWish, removeFromWish } = useWishList();
 
-  const { handleAddToCart, isPresentIncart } = useCart();
+  const { handleAddToCart, isPresentIncart, getSingleProduct } = useCart();
+  const navigate = useNavigate();
 
   return (
     <div
@@ -28,7 +28,12 @@ export const Card = ({ product }) => {
       >
         <FaHeart />
       </p>
-      <section className="card__image">
+      <section
+        onClick={() => {
+          navigate(`/product/${_id}`, getSingleProduct(_id));
+        }}
+        className="card__image"
+      >
         <img style={{ opacity: !inStock ? 0.5 : 1 }} src={image} alt={name} />
       </section>
 
@@ -46,7 +51,9 @@ export const Card = ({ product }) => {
         </p>
         <button
           className="add__cart"
-          onClick={() => !isPresentIncart(_id) && handleAddToCart(product)}
+          onClick={() => {
+            !isPresentIncart(_id) && handleAddToCart(product);
+          }}
         >
           {isPresentIncart(_id) ? "Added to Cart" : "Add To Cart"}
         </button>

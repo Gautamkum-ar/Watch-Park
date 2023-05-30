@@ -62,6 +62,7 @@ box-shadow: 3px 3px 10px #999;
     color: #ffff;
     margin-top: 1rem;
     transition: .3s linear all;
+    cursor: pointer;
 }
 .login__container form .login__btn:hover{
     background-color: #4b8ce7;

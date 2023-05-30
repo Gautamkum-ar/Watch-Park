@@ -1,6 +1,14 @@
-import { highToLow, lowToHigh } from "../../utils/filterByPrice/FilterByPrice";
+import {
+  filterByRange,
+  filterByRating5,
+  highToLow,
+  lowToHigh,
+} from "../../utils/filterByPrice/FilterByPrice";
 import {
   filterAnalog,
+  filterByIdealForKids,
+  filterByIdealForMen,
+  filterByIdealForWomen,
   filterCategory,
   filterDigital,
   filterSmartWatch,
@@ -9,45 +17,72 @@ import { HIGH_TO_LOW, LOW_TO_HIGH } from "./action.type";
 
 export const filteredData = (state, data) => {
   let reservedData = [...data];
-  let filterData = [...data];
-  let temp = [...data];
-  // console.log(state.handleCheckboxes);
+  let filterData;
 
-  // if (state.handleCheckboxes.length > 0) {
-  //   state.handleCheckboxes.every((checkbox) => {
-  //     if (checkbox === "Analog") {
-  //       filterData = filterAnalog(reservedData);
-  //       return (temp = filterData);
-  //     } else {
-  //       temp = [...temp, ...filterData];
-  //     }
-  //     if (checkbox === "DIGITAL") {
-  //       filterData = filterDigital(reservedData);
-  //       return (temp = [...filterData]);
-  //     } else {
-  //       temp = [...temp, ...filterData];
-  //     }
-  //     if (checkbox === "SMART WATCH") {
-  //       filterData = filterSmartWatch(reservedData);
-  //       return (temp = [...filterData]);
-  //     } else {
-  //       temp = [...temp, ...filterData];
-  //     }
-  //   });
-  // }
-
-  if (state.sortByPrice === LOW_TO_HIGH) {
-    filterData = lowToHigh(filterData);
-  } else if (state.sortByPrice === HIGH_TO_LOW) {
-    filterData = highToLow(filterData);
-  }
+  // filter by category
 
   if (state.handleCheckboxes.length > 0) {
+    let temp;
+    filterData = [];
     state.handleCheckboxes.map((checkbox) => {
       if (checkbox === "Analog") {
-        filterData = filterAnalog(filterData);
+        temp = filterAnalog(reservedData);
+        return (filterData = [...temp, ...filterData]);
+      }
+      if (checkbox === "DIGITAL") {
+        temp = filterDigital(reservedData);
+        return (filterData = [...temp, ...filterData]);
+      }
+      if (checkbox === "SMART WATCH") {
+        temp = filterSmartWatch(reservedData);
+        return (filterData = [...filterData, ...temp]);
       }
     });
   }
-  return filterData;
+
+  // idealFor Filter
+
+  if (state.idealFor === "Men") {
+    filterData = filterByIdealForMen(filterData ? filterData : reservedData);
+  }
+  if (state.idealFor === "Women") {
+    filterData = filterByIdealForWomen(filterData ? filterData : reservedData);
+  }
+  if (state.idealFor === "Kids") {
+    filterData = filterByIdealForKids(filterData ? filterData : reservedData);
+  }
+
+  // RangeFilter and price filter
+
+  if (state.priceByRange > 0) {
+    filterData = filterByRange(
+      filterData ? filterData : reservedData,
+      state.priceByRange
+    );
+  }
+
+  // rating filter
+  if (state.ratingFilter === "5.0") {
+    filterData = filterByRating5(filterData ? filterData : reservedData, "5.0");
+  }
+  if (state.ratingFilter === "4.5") {
+    filterData = filterByRating5(filterData ? filterData : reservedData, "4.5");
+  }
+  if (state.ratingFilter === "4.0") {
+    filterData = filterByRating5(filterData ? filterData : reservedData, "4.0");
+  }
+  if (state.ratingFilter === "3.5") {
+    filterData = filterByRating5(filterData ? filterData : reservedData, "3.5");
+  }
+  if (state.ratingFilter === "3.0") {
+    filterData = filterByRating5(filterData ? filterData : reservedData, "3.0");
+  }
+
+  if (state.sortByPrice === LOW_TO_HIGH) {
+    filterData = lowToHigh(filterData ? filterData : reservedData);
+  } else if (state.sortByPrice === HIGH_TO_LOW) {
+    filterData = highToLow(filterData ? filterData : reservedData);
+  }
+
+  return filterData ? filterData : reservedData;
 };

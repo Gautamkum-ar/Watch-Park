@@ -55,7 +55,7 @@ export const products = [
     category: "Analog",
     price: 999,
     idealFor: "Men",
-    rating: 4.3,
+    rating: 4.6,
     discountPercentage: 40,
     warranty: "1 Year Manufacturer Warranty",
     image:
@@ -97,7 +97,7 @@ export const products = [
     category: "Analog",
     price: 4695,
     idealFor: "Men",
-    rating: 4.2,
+    rating: 2.5,
     discountPercentage: 20,
     warranty: "1 Year Manufacturer Warranty",
     image:
@@ -125,7 +125,7 @@ export const products = [
     category: "Analog",
     price: 699,
     idealFor: "Men",
-    rating: 4.4,
+    rating: 4.8,
     discountPercentage: 4,
     warranty: "1 Year Manufacturer Warranty",
     image:
@@ -153,7 +153,7 @@ export const products = [
     category: "DIGITAL",
     price: 1499,
     idealFor: "Men",
-    rating: 4.4,
+    rating: 3.7,
     discountPercentage: 48,
     warranty: "1 Year Manufacturer Warranty",
     image:
@@ -181,7 +181,7 @@ export const products = [
     category: "DIGITAL",
     price: 999,
     idealFor: "Men",
-    rating: 4.0,
+    rating: 3.4,
     discountPercentage: 77,
     warranty: "1 Year Manufacturer Warranty",
     image:
@@ -209,7 +209,7 @@ export const products = [
     category: "DIGITAL",
     price: 999,
     idealFor: "Men",
-    rating: 4.0,
+    rating: 3.5,
     discountPercentage: 78,
     warranty: "1 Year Manufacturer Warranty",
     image:
@@ -334,8 +334,8 @@ export const products = [
     brand: "GLENVIT-X     ",
     category: "DIGITAL",
     price: 900,
-    idealFor: "kids ",
-    rating: 4.0,
+    idealFor: "Kids",
+    rating: 3.0,
     discountPercentage: 76,
     warranty: "1 Year Manufacturer Warranty",
     image:

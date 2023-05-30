@@ -1,24 +1,30 @@
-export const cartReducer = (state, action) => {
-  switch (action.type) {
+export const cartReducer = (state, { type, payload }) => {
+  switch (type) {
     case "GET_CART": {
-      return { ...state, cart: action.payload };
+      return { ...state, cart: payload };
     }
     case "INCREMENT_CART_ITEM": {
-      return { ...state, cart: action.payload };
+      return { ...state, cart: payload };
     }
     case "ADD_TO_CART": {
-      return { ...state, cart: action.payload };
+      return { ...state, cart: payload };
     }
     case "DECREASE_CART_ITEM": {
       return {
         ...state,
-        cart: action.payload,
+        cart: payload,
       };
     }
     case "DELETE_CART_ITEM": {
       return {
         ...state,
-        cart: action.payload,
+        cart: payload,
+      };
+    }
+    case "GET_SINGLE_PRODUCT": {
+      return {
+        ...state,
+        singleProduct: payload,
       };
     }
 
