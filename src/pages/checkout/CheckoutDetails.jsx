@@ -1,7 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import { useCart } from "../../contexts/CartContext/CartContext";
 
 export const CheckoutDetails = ({ selectedAdd }) => {
   const { state } = useCart();
+
+  const navigate = useNavigate();
   const totalPrice = state?.cart?.reduce(
     (total, { price, qty }) => total + price * qty,
     0
@@ -12,6 +15,7 @@ export const CheckoutDetails = ({ selectedAdd }) => {
       total + parseInt((price * discountPercentage * qty) / 100),
     0
   );
+
   return (
     <>
       {state?.cart.length > 0 ? (
@@ -56,7 +60,12 @@ export const CheckoutDetails = ({ selectedAdd }) => {
             ) <br /> {selectedAdd.mobile}
           </div>
 
-          <button className="place__order">Place Order</button>
+          <button
+            className="place__order"
+            onClick={() => navigate("/orderdetail")}
+          >
+            Place Order
+          </button>
         </div>
       ) : (
         <h1 style={{ color: "red" }}>You Have no Item proceed Further</h1>

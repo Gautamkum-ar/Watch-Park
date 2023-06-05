@@ -37,7 +37,8 @@ export const AuthContextProvider = ({ children }) => {
           const { encodedToken, foundUser } = await response.json();
           setUser(foundUser);
           localStorage.setItem("token", encodedToken);
-          localStorage.setItem("user", foundUser);
+          localStorage.setItem("user", foundUser.firstName);
+          localStorage.setItem("last", foundUser.lastName);
         } else {
           toast.error("The email you entered is not Registered.");
         }
@@ -67,6 +68,7 @@ export const AuthContextProvider = ({ children }) => {
         setUser(foundUser);
         localStorage.setItem("token", encodedToken);
         localStorage.setItem("user", foundUser.firstName);
+        localStorage.setItem("last", foundUser.lastName);
 
         setIsLoggedIn(true);
       } else {

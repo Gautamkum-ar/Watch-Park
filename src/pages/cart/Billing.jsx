@@ -32,7 +32,11 @@ export const Billing = ({ cart }) => {
         </div>
         <div className="disc">
           <p>Total Save</p>
-          <p> &#x20B9;{totalDiscount}</p>
+          <p> -&#x20B9;{totalDiscount}</p>
+        </div>
+        <div className="disc">
+          <p>Delivery </p>
+          <p> Free</p>
         </div>
       </section>
       <section className="total__pay">

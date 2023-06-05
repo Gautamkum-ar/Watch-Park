@@ -16,9 +16,11 @@ import { useWishList } from "../../contexts/wishListContext/wishListContext";
 const Header = () => {
   const { state } = useCart();
   const { wishlistLength } = useWishList();
+
+  const token = localStorage.getItem("token");
+
   const getStyle = ({ isActive }) => ({
     color: isActive ? "purple" : "#fdf4f4",
-    // fontSize: isActive && "1.2rem",
     borderBottom: isActive && "2px solid purple",
   });
   return (
@@ -38,22 +40,23 @@ const Header = () => {
 
         <NavLink style={getStyle} to="/cart">
           <FaShoppingCart />
-          <p className="list__item">
+
+          {/* <p className="list__item">
             {" "}
             {state?.cart?.length > 0 && (
               <span className="cart__no">{state?.cart?.length}</span>
             )}
-          </p>
+          </p> */}
         </NavLink>
 
         <NavLink style={getStyle} to="/wishlist">
           <FaHeart />
-          <p className="list__item">
+          {/* <p className="list__item">
             {" "}
             {wishlistLength > 0 && (
               <span className="cart__no">{wishlistLength}</span>
             )}
-          </p>
+          </p> */}
         </NavLink>
         <NavLink style={getStyle} to="/profile">
           <FaUser />

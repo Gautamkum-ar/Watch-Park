@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import CategoryList from "../../components/categoryList/CategoryList";
 import { ImageSlider } from "../../components/imageSlider/ImageSlider";
 import DealOfDay from "../../components/dealOfDay/DealOfDay";
@@ -8,8 +8,9 @@ import { Loader } from "../../components/loader/Loader";
 import { APIContext } from "../../contexts/APIContext/APIContext";
 import { Footer } from "../../components/footer/Footer";
 export const Home = () => {
-  const { isLoading } = useContext(APIContext);
-  console.log(isLoading);
+  const { isLoading,  } = useContext(APIContext);
+
+ 
   return (
     <div className="home__page">
       {isLoading ? (

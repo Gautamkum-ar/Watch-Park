@@ -26,7 +26,7 @@ const Cart = () => {
           ) : (
             <p className="no_item">You see there is No item in cart</p>
           )}
-          {state?.cart?.length < 0 ? (
+          {state?.cart?.length < 1 ? (
             <div className="empty">
               <img src={emptyCart} alt="emptycart" className="empty__cart" />
             </div>

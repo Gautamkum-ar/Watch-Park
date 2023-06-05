@@ -29,15 +29,15 @@ export const initialState = {
     address: "",
     pincode: "",
     city: "",
-    Newsta: "",
+    state: "",
   },
 };
 
 export const ProductContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-
+  const selectedAddress = state.selectedAdd;
   return (
-    <ProductContext.Provider value={{ state, dispatch }}>
+    <ProductContext.Provider value={{ state, dispatch, selectedAddress }}>
       {children}
     </ProductContext.Provider>
   );

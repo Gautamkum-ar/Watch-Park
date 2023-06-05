@@ -127,9 +127,15 @@ border-radius: 0 0.5rem 0.5rem 0;
 
    
 }
-
+.add__cart a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: var(--btn-color);
+}
 .add__cart:hover{
     cursor: pointer;
-    color: var(--btn-background);
-    background: var(--btn-color);
+    color: var(--btn-color);
+    background: var(--primary-background);
 }

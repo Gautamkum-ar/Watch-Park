@@ -8,6 +8,8 @@ import { CheckoutDetails } from "./CheckoutDetails";
 export const Checkout = () => {
   const { state, dispatch } = useProduct();
   const [newActive, setNewActive] = useState(false);
+
+  const [edit, setEdit] = useState(false);
   return (
     <div className="checkout__container">
       <h1>Checkout</h1>
@@ -27,13 +29,15 @@ export const Checkout = () => {
                 {elms.address}, {elms.city}, {elms.state} ({elms.pincode}
                 ) <br /> {elms.mobile}
               </div>
-              {/* <button
-                onClick={() =>
-                  dispatch({ type: "EDIT_ADDRESS", payload: elms })
-                }
+              <button
+                onClick={() => {
+                  setNewActive(true);
+                  setEdit(true);
+                  dispatch({ type: "EDIT_ADDRESS", payload: elms.id });
+                }}
               >
                 Edit
-              </button> */}
+              </button>
               <button
                 className="delete_add"
                 onClick={() =>
@@ -47,7 +51,13 @@ export const Checkout = () => {
           <p onClick={() => setNewActive(!newActive)} className="add__new">
             <FaPlus /> Add New Address
           </p>
-          {newActive && <NewAddress setNewActive={setNewActive} />}
+          {newActive && (
+            <NewAddress
+              setNewActive={setNewActive}
+              edit={edit}
+              setEdit={setEdit}
+            />
+          )}
         </div>
         <CheckoutDetails selectedAdd={state?.selectedAdd} />
       </div>

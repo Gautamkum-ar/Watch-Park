@@ -3,17 +3,14 @@ import "../address/style.css";
 import { useProduct } from "../../contexts/ProductContext/ProductContext";
 import { toast } from "react-toastify";
 
-export const NewAddress = ({ setNewActive }) => {
-  const { dispatch } = useProduct();
+export const NewAddress = ({ setNewActive, edit, setEdit }) => {
+  const { dispatch, state } = useProduct();
 
-  const [newAddress, setNewAddress] = useState({
-    name: "",
-    mobile: "",
-    address: "",
-    pincode: "",
-    city: "",
-    Newsta: "",
-  });
+  const [newAddress, setNewAddress] = useState(
+    edit
+      ? { ...state.editAdd }
+      : { name: "", mobile: "", address: "", pincode: "", city: "", state: "" }
+  );
 
   const dummyData = {
     name: "Test User",
@@ -21,7 +18,7 @@ export const NewAddress = ({ setNewActive }) => {
     address: "N-12/122 DurgaKund",
     pincode: "221010",
     city: "Varanasi",
-    Newsta: "UTTAR PRADESH",
+    state: "UTTAR PRADESH",
   };
 
   const handleinput = (e) => {
@@ -33,7 +30,7 @@ export const NewAddress = ({ setNewActive }) => {
       newAddress.address === "" ||
       newAddress.pincode === "" ||
       newAddress.city === "" ||
-      newAddress.Newsta === ""
+      newAddress.state === ""
     ) {
       toast.warning("Please Enter all field");
     } else {
@@ -46,6 +43,13 @@ export const NewAddress = ({ setNewActive }) => {
   const addDummyData = (e) => {
     e.preventDefault();
     setNewAddress({ ...dummyData });
+  };
+
+  const handleUpdate = (e) => {
+    e.preventDefault();
+    setNewActive(false);
+
+    dispatch({ type: "UPDATE", payload: newAddress });
   };
   return (
     <div className="new__address">
@@ -112,9 +116,9 @@ export const NewAddress = ({ setNewActive }) => {
             type="text"
             placeholder="State"
             required
-            value={newAddress.Newsta}
+            value={newAddress.state}
             onChange={(e) =>
-              setNewAddress({ ...newAddress, Newsta: e.target.value })
+              setNewAddress({ ...newAddress, state: e.target.value })
             }
           />
         </label>
@@ -122,13 +126,27 @@ export const NewAddress = ({ setNewActive }) => {
           {" "}
           <button
             onClick={(e) => {
-              handleinput(e);
+              edit ? handleUpdate(e) : handleinput(e);
             }}
           >
-            Add
+            {edit ? "Update" : "Add"}
           </button>
-          <button onClick={(e) => addDummyData(e)}>Dummy Data</button>
-          <button onClick={() => setNewActive(false)}>Cancel</button>
+          <button
+            onClick={(e) => {
+              addDummyData(e);
+              setEdit(false);
+            }}
+          >
+            Dummy Data
+          </button>
+          <button
+            onClick={() => {
+              setEdit(false);
+              setNewActive(false);
+            }}
+          >
+            Cancel
+          </button>
         </div>
       </form>
     </div>

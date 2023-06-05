@@ -2,13 +2,15 @@ import "../card/style.css";
 import { useCart } from "../../contexts/CartContext/CartContext";
 import { FaHeart } from "react-icons/fa";
 import { useWishList } from "../../contexts/wishListContext/wishListContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Card = ({ product }) => {
   const { price, name, _id, image, discountPercentage, inStock } = product;
   const { addItemInWishList, isPresentInWish, removeFromWish } = useWishList();
 
   const { handleAddToCart, isPresentIncart, getSingleProduct } = useCart();
+
+  const token = localStorage.getItem("token");
   const navigate = useNavigate();
 
   return (
@@ -23,7 +25,9 @@ export const Card = ({ product }) => {
         onClick={() =>
           isPresentInWish(_id)
             ? removeFromWish(_id)
-            : addItemInWishList(product)
+            : token
+            ? addItemInWishList(product)
+            : navigate("/login")
         }
       >
         <FaHeart />
@@ -52,11 +56,17 @@ export const Card = ({ product }) => {
         <button
           className="add__cart"
           onClick={() => {
-            !isPresentIncart(_id) && handleAddToCart(product);
+            token
+              ? !isPresentIncart(_id) && handleAddToCart(product)
+              : navigate("/login");
           }}
           disabled={!inStock}
         >
-          {isPresentIncart(_id) ? "Added to Cart" : "Add To Cart"}
+          {isPresentIncart(_id) ? (
+            <Link to="/cart">Go To Cart</Link>
+          ) : (
+            "Add To Cart"
+          )}
         </button>
       </section>
     </div>

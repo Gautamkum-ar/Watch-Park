@@ -70,8 +70,14 @@ export const reducer = (state, action) => {
     case "ADDRESS": {
       return {
         ...state,
-        addresses: [...state.addresses, action.payload],
+        addresses:[...state.addresses,action.payload]
       };
+    }
+    case 'UPDATE':{
+      return{
+        ...state,
+        addresses:state.addresses.map((elms)=>elms.id===action.payload.id?{...action.payload}:elms),
+      }
     }
     case "SELECTED_ADDRESS": {
       return {
@@ -80,9 +86,10 @@ export const reducer = (state, action) => {
       };
     }
     case "EDIT_ADDRESS": {
+
       return {
         ...state,
-        editAdd: action.payload,
+        editAdd: state.addresses.find((elms) => elms.id === action.payload),
       };
     }
     case "DELETE_ADDRESS": {
