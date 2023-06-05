@@ -5,7 +5,6 @@ import "../userProfile/style.css";
 import "../userProfile/style.css";
 export const User = () => {
   const { user, isLoggedIn, setIsLoggedIn } = useAuth();
-  const token = localStorage.getItem("token");
   const handleLogout = (e) => {
     setIsLoggedIn(false);
 

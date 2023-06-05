@@ -12,7 +12,7 @@ import { Login } from "./pages/login/Login";
 import { SignUp } from "./pages/signup/SignUp";
 import { RequireAuth } from "./RequireAuth/RequireAuth";
 import { User } from "./pages/userProfile/User";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Individual } from "./pages/individual/Individual";
 import { Checkout } from "./pages/checkout/CheckOut";

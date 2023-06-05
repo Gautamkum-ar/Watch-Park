@@ -1,4 +1,3 @@
-import { Card } from "../../components/card/Card";
 import { useCart } from "../../contexts/CartContext/CartContext";
 import { FaHeart, FaMinus, FaPlus, FaStar, FaTrash } from "react-icons/fa";
 import "../cart/style.css";

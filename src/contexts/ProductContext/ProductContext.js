@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer, useState } from "react";
+import { createContext, useContext, useReducer } from "react";
 import { reducer } from "../../reducers/product-list-reducer/reducer";
 
 const ProductContext = createContext(null);
@@ -44,5 +44,3 @@ export const ProductContextProvider = ({ children }) => {
 };
 
 export const useProduct = () => useContext(ProductContext);
-
-        

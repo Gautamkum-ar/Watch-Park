@@ -1,14 +1,6 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useReducer,
-  useState,
-} from "react";
-import { Post } from "react-axios";
-import { SignUp } from "../../pages/signup/SignUp";
-import { toast } from "react-toastify";
+import { createContext, useContext, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const AuthContext = createContext();
 export const AuthContextProvider = ({ children }) => {
