@@ -139,3 +139,17 @@ datalist{
     justify-content: space-between;
 }
 
+.no_product_found{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: rgb(61, 59, 59);
+    gap: 10px;
+}
+
+.no_product_found img{
+    display: flex;
+    width: 50%;
+    height: 70%;
+}

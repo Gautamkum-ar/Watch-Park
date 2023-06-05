@@ -9,6 +9,7 @@
     width: 30%;
     height: 3rem;
     border: none;
+    margin-left: 5rem;
 }
 .nav__search input{
     display: flex;

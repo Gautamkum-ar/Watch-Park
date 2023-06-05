@@ -50,7 +50,6 @@ const FilterBox = () => {
             type="range"
             max="9000"
             min="150"
-            list="value"
             value={state.priceByRange}
             onChange={(e) =>
               dispatch({ type: "FILTER_BY_RANGE", payload: e.target.value })

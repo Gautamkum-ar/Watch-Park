@@ -1,27 +1,29 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext/AuthContext";
 import "../userProfile/style.css";
-import { useState } from "react";
-
 
 import "../userProfile/style.css";
 export const User = () => {
   const { user, isLoggedIn, setIsLoggedIn } = useAuth();
   const token = localStorage.getItem("token");
-  const handleLogout = () => {
+  const handleLogout = (e) => {
     setIsLoggedIn(false);
+
     localStorage.removeItem("token");
+    localStorage.removeItem("user");
   };
 
   return (
     <div className="profile__container">
       {isLoggedIn ? (
         <div className="profile">
-          <h1>
-            {user.firstName} {user.lastName}
-          </h1>
+          <div>
+            <h1>
+              {user.firstName} {user.lastName}
+            </h1>
 
-          <button onClick={handleLogout}>Logout</button>
+            <button onClick={handleLogout}>Logout</button>
+          </div>
         </div>
       ) : (
         <>

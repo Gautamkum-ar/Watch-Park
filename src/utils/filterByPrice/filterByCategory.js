@@ -13,3 +13,10 @@ export const filterByIdealForWomen = (data) =>
   data.filter((elms) => elms.idealFor === "Women");
 export const filterByIdealForKids = (data) =>
   data.filter((elms) => elms.idealFor === "Kids");
+
+
+
+  export const search = (data, inputValue) =>
+    data.filter((elms) =>
+      elms.name.toLowerCase().includes(inputValue.toLowerCase())
+    );

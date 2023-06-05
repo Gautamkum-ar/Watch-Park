@@ -7,6 +7,7 @@ import { Billing } from "./Billing";
 import emptyCart from "../../assets/images/emptyCart.gif";
 import { useWishList } from "../../contexts/wishListContext/wishListContext";
 import { Loader } from "../../components/loader/Loader";
+import { Footer } from "../../components/footer/Footer";
 
 const Cart = () => {
   const { increaseItem, state, decreaseItem, deleteItem, isLoading } =
@@ -26,7 +27,7 @@ const Cart = () => {
           ) : (
             <p className="no_item">You see there is No item in cart</p>
           )}
-          {state?.cart?.length < 1 ? (
+          {state?.cart?.length < 0 ? (
             <div className="empty">
               <img src={emptyCart} alt="emptycart" className="empty__cart" />
             </div>
@@ -121,6 +122,7 @@ const Cart = () => {
           )}
         </div>
       )}
+      <Footer />
     </>
   );
 };

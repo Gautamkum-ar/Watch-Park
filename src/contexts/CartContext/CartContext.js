@@ -129,7 +129,6 @@ export const CartContextProvider = ({ children }) => {
     const findItem = state?.cart?.find((item) => item._id === _id);
     return findItem ? true : false;
   };
-  console.log(state.singleProduct);
 
   return (
     <CartContext.Provider

@@ -15,6 +15,7 @@ import { User } from "./pages/userProfile/User";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Individual } from "./pages/individual/Individual";
+import { Checkout } from "./pages/checkout/CheckOut";
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
         />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
     </div>
   );

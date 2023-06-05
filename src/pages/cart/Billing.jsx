@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "../cart/style.css";
 
 export const Billing = ({ cart }) => {
@@ -39,7 +40,9 @@ export const Billing = ({ cart }) => {
         <h4> &#x20B9;{totalPrice}</h4>
       </section>
 
-      <button className="checkout__btn">Checkout</button>
+      <Link className="checkout__btn" to="/checkout">
+        CheckOut
+      </Link>
     </div>
   );
 };

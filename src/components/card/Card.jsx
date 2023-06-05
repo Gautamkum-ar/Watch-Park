@@ -54,6 +54,7 @@ export const Card = ({ product }) => {
           onClick={() => {
             !isPresentIncart(_id) && handleAddToCart(product);
           }}
+          disabled={!inStock}
         >
           {isPresentIncart(_id) ? "Added to Cart" : "Add To Cart"}
         </button>

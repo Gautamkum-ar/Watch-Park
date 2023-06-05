@@ -9,9 +9,9 @@ import {
   filterByIdealForKids,
   filterByIdealForMen,
   filterByIdealForWomen,
-  filterCategory,
   filterDigital,
   filterSmartWatch,
+  search,
 } from "../../utils/filterByPrice/filterByCategory";
 import { HIGH_TO_LOW, LOW_TO_HIGH } from "./action.type";
 
@@ -19,11 +19,21 @@ export const filteredData = (state, data) => {
   let reservedData = [...data];
   let filterData;
 
+  //search input
+
+  if (state.inputValue !== "") {
+    filterData = search(
+      filterData ? filterData : reservedData,
+      state.inputValue
+    );
+  }
+
   // filter by category
 
   if (state.handleCheckboxes.length > 0) {
     let temp;
     filterData = [];
+
     state.handleCheckboxes.map((checkbox) => {
       if (checkbox === "Analog") {
         temp = filterAnalog(reservedData);
@@ -62,6 +72,7 @@ export const filteredData = (state, data) => {
   }
 
   // rating filter
+
   if (state.ratingFilter === "5.0") {
     filterData = filterByRating5(filterData ? filterData : reservedData, "5.0");
   }

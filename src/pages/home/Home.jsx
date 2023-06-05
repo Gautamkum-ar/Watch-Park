@@ -6,6 +6,7 @@ import DealOfDay from "../../components/dealOfDay/DealOfDay";
 import "../home/homeStyle.css";
 import { Loader } from "../../components/loader/Loader";
 import { APIContext } from "../../contexts/APIContext/APIContext";
+import { Footer } from "../../components/footer/Footer";
 export const Home = () => {
   const { isLoading } = useContext(APIContext);
   console.log(isLoading);
@@ -15,12 +16,12 @@ export const Home = () => {
         <Loader />
       ) : (
         <>
-        
           <ImageSlider />
           <CategoryList />
           <DealOfDay />
         </>
       )}
+      <Footer />
     </div>
   );
 };

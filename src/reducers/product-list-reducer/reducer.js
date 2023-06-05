@@ -1,7 +1,14 @@
 import { HIGH_TO_LOW, LOW_TO_HIGH } from "./action.type";
 
 export const reducer = (state, action) => {
+
   switch (action.type) {
+    case "INPUT_SEARCH": {
+      return {
+        ...state,
+        inputValue: action.payload,
+      };
+    }
     case LOW_TO_HIGH:
       return {
         ...state,
@@ -49,7 +56,8 @@ export const reducer = (state, action) => {
         handleCheckboxes: [],
         idealFor: [],
         priceByRange: "",
-        ratingFilter: "",
+        ratingFilter: 9000,
+        inputValue: "",
       };
     }
 
@@ -57,6 +65,32 @@ export const reducer = (state, action) => {
       return {
         ...state,
         ratingFilter: action.payload,
+      };
+    }
+    case "ADDRESS": {
+      return {
+        ...state,
+        addresses: [...state.addresses, action.payload],
+      };
+    }
+    case "SELECTED_ADDRESS": {
+      return {
+        ...state,
+        selectedAdd: action.payload,
+      };
+    }
+    case "EDIT_ADDRESS": {
+      return {
+        ...state,
+        editAdd: action.payload,
+      };
+    }
+    case "DELETE_ADDRESS": {
+      return {
+        ...state,
+        addresses: state.addresses.filter(
+          (elms) => elms.id !== action.payload.id
+        ),
       };
     }
     default:

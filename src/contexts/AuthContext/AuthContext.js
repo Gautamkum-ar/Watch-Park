@@ -22,7 +22,7 @@ export const AuthContextProvider = ({ children }) => {
     password: "",
   });
   const [user, setUser] = useState({});
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -45,6 +45,7 @@ export const AuthContextProvider = ({ children }) => {
           const { encodedToken, foundUser } = await response.json();
           setUser(foundUser);
           localStorage.setItem("token", encodedToken);
+          localStorage.setItem("user", foundUser);
         } else {
           toast.error("The email you entered is not Registered.");
         }
@@ -73,6 +74,8 @@ export const AuthContextProvider = ({ children }) => {
         const { encodedToken, foundUser } = await response.json();
         setUser(foundUser);
         localStorage.setItem("token", encodedToken);
+        localStorage.setItem("user", foundUser.firstName);
+
         setIsLoggedIn(true);
       } else {
         toast.error("The email you entered is not Registered.");

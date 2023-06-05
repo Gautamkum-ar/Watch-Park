@@ -1,0 +1,20 @@
+
+
+.footer__main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 6rem;
+    margin-top: 2rem;
+}
+.footer__main p{
+    display: flex;
+    gap: 1rem;
+}
+
+.footer__main p a{
+    
+    font-size: 1.6rem;
+    color: #1765d1;
+}
