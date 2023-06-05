@@ -90,3 +90,13 @@
     background: var(--primary-background);
     color: var(--primary-color);
 }
+@media only screen and (max-width: 600px) {
+    .category__box .cat__card{
+        display: flex;
+        width: 80%;
+        height: 80%;
+    
+        
+        
+    }
+  }

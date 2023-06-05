@@ -126,6 +126,7 @@ export const NewAddress = ({ setNewActive, edit, setEdit }) => {
           {" "}
           <button
             onClick={(e) => {
+              setEdit(false);
               edit ? handleUpdate(e) : handleinput(e);
             }}
           >

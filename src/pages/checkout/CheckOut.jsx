@@ -30,6 +30,7 @@ export const Checkout = () => {
                 ) <br /> {elms.mobile}
               </div>
               <button
+                className="edit__btn"
                 onClick={() => {
                   setNewActive(true);
                   setEdit(true);

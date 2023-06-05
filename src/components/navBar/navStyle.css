@@ -95,3 +95,36 @@
     border-radius: 50%;
     background: rgb(236, 52, 52);
 }
+
+
+
+@media only screen and (max-width: 600px) {
+    .header .logo{
+        
+       
+        width: 40%;
+        height: 90%;
+    }
+    .logo img{
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+       animation: animate 4s linear infinite;
+    }
+    .logo p{
+       
+        z-index: 10;
+        font-size: 0.6rem;
+        background: var(--primary-background);
+    }
+    .nav__links{
+        width: 40%;
+        height: 100%;
+    }
+    .nav__links  a{
+       
+       font-size: 1.2rem;
+
+    
+    }
+  }

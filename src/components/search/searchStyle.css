@@ -30,3 +30,13 @@
     font-size: 1.3rem;
     color: #908a8a;
 }
+
+
+
+@media only screen and (max-width: 600px) {
+    .nav__search{
+        
+       
+        display: none;
+    }
+  }

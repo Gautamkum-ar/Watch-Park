@@ -153,3 +153,39 @@ datalist{
     width: 50%;
     height: 70%;
 }
+
+
+
+/* responsive */
+
+@media only screen and (max-width: 600px) {
+    .product__listing{
+        
+       
+     display: grid;
+     grid-template-columns: 1fr;
+     margin-top: 0;
+
+    }
+    .filter__box{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        height: auto;
+    
+        
+    }
+    .show__list{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 2rem;
+    }
+    .product__listing .totalProduct{
+        margin-top: 4rem;
+        color: #6d5e5e;
+    
+    }
+  }

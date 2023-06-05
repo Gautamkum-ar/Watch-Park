@@ -59,14 +59,15 @@ margin: auto;
     .container{
       display: flex;
         height: 20rem;
+        width: 100%;
     }
     .next__btn{
-  right: -76%;
+  right: 3%;
   font-size: 3rem
 
     }
     .prev__btn{
- left: 2rem;
+ left: 3%;
   font-size: 3rem
 
     }
