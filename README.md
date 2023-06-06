@@ -63,6 +63,7 @@ Start the server
 - User Login
 - logout page
 - Toast and Loaders
+-Responsiveness
 
 ## Build With
 

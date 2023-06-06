@@ -1,7 +1,8 @@
 import "../login/style.css";
 import { useAuth } from "../../contexts/AuthContext/AuthContext";
 import { Link } from "react-router-dom";
-
+import { useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 export const Login = () => {
   const {
     setUserName,
@@ -13,6 +14,11 @@ export const Login = () => {
     isLoggedIn,
   } = useAuth();
 
+  const [isVisible, setIsVisible] = useState(false);
+
+  const handleVisiblity = () => {
+    setIsVisible(!isVisible);
+  };
   return (
     <div className="login__container">
       <form onSubmit={(e) => e.preventDefault()}>
@@ -29,11 +35,18 @@ export const Login = () => {
         <label>
           Enter Your Password:
           <input
-            type="password"
-            placeholder="xyz1234"
+            type={!isVisible ? "text" : "password"}
+            placeholder="password"
             value={password}
             onChange={(e) => setPasswprd(e.target.value)}
           />
+          <p className="visible__eye">
+            {isVisible ? (
+              <FaEye onClick={handleVisiblity} />
+            ) : (
+              <FaEyeSlash onClick={handleVisiblity} />
+            )}
+          </p>
         </label>
         <button
           type="submit"
